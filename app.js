@@ -28,15 +28,18 @@ const displayThemes = (themes) =>{
         const p_theme = document.createElement('p');
         p_theme.textContent = theme.libelle
         p_theme.classList.add("shadowfort","btn","btn-primary","m-3","rounded-pill","bg-gradient","border", "border-primary","text-white","opacity-75","col-10",'col-lg-4','col-xl-2')
+        p_theme.addEventListener()
         div.appendChild(p_theme)
     })
 }
 
 
+/*
 document.onclick = function(event) {
     if (event===undefined) event= window.event;
 
-    var target= 'target' in event? event.target : event.srcElement;
+    var target= 'target' in event? event.innerText : event.srcElement;
     console.log(target)
 }
+*/
 
