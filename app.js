@@ -73,19 +73,10 @@ BtnCommencer.addEventListener("click", function (){
 
         const displayQuestions = (questions) => {
 
-
-
+            let i = 0
 //mettre ici pour afficher la question et les reponses et regarder si la reponse est bon.
-            themes.forEach(theme => {
-                const p_theme = document.createElement('button');
-                p_theme.textContent = theme.libelle
-                div.appendChild(p_theme)
+            console.log(questions[i])
 
-
-                p_theme.addEventListener("click", function () {
-
-                })
-            })
 
 
 
