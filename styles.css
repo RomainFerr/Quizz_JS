@@ -10,3 +10,6 @@ border-radius: 42px;
     margin-right: 15vh;
     margin-left: 15vh;
 }
+.displayNone{
+  display: none;
+}

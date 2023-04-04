@@ -17,11 +17,15 @@
 
 <!-- Partie Nombre -->
 
-<section style="display: none; margin-top: 25vh;" id="Nb_Questions">
+<section style="margin-top: 25vh;" id="Nb_Questions" class="displayNone">
     <H1 class="border-d text-primary mb-4 d-flex justify-content-center">Combien de questions veux-tu ?</H1>
-    <input class="d-flex mx-auto justify-content-center">
+    <input id="NombreInput" type="number" class="d-flex mx-auto justify-content-center">
+    <button id="BtnCommencer" class="d-flex justify-content-center mx-auto shadowfort btn btn-primary mt-4 rounded-pill bg-gradient border border-primary text-white opacity-75 col-10 col-lg-4 col-xl-2">Commencer</button>
 </section>
 
+<section class="displayNone" id="Questions" style="margin-top: 25vh;">
+
+</section>
 
 
 <script src="app.js"></script>
