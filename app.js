@@ -77,9 +77,11 @@ BtnCommencer.addEventListener("click", function () {
 
         const displayQuestions = (questions) => {
 
-            let i = 0
             let bonneReponses = 0
+            let i = 0
             let okReponse
+
+
 
 
             const questionTitre = document.createElement('h1');
@@ -98,10 +100,7 @@ BtnCommencer.addEventListener("click", function () {
                         reponseDonne = this.textContent;
 
                         if (reponseDonne === questions[i].bonnereponse) {
-                            i = i + 1
                             bonneReponses = bonneReponses + 1
-                        } else {
-                            i = i + 1
                         }
                     })
                 }
