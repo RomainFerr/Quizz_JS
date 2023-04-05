@@ -6,10 +6,15 @@
     border: 2px dashed #2b7aec;
     padding: 2vh;
     background: rgba(43, 122, 236, 0.15);
-border-radius: 42px;
+    border-radius: 42vh;
     margin-right: 15vh;
     margin-left: 15vh;
+    padding: 5vh;
 }
 .displayNone{
   display: none;
+}
+.espace{
+    margin-right: 15vh;
+    margin-left: 15vh;
 }
