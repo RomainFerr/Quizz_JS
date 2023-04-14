@@ -76,38 +76,70 @@ BtnCommencer.addEventListener("click", function () {
 
 
         const displayQuestions = (questions) => {
+            let bonneReponses = 0;
+            let i = 0;
+            let okReponse;
 
-            let bonneReponses = 0
-            let i = 0
-            let okReponse
+            const displayNextQuestion = () => {
+                const questionTitre = document.createElement('h1');
+                questionTitre.textContent = questions[i].intitule;
+                questionTitre.classList.add(
+                    'border-d',
+                    'rounded-pill',
+                    'd-flex',
+                    'justify-content-center',
+                    'text-primary',
+                    'mb-4'
+                );
+                sectionQuestionsIntitule.appendChild(questionTitre);
 
-
-
-
-            const questionTitre = document.createElement('h1');
-            questionTitre.textContent = questions[i].intitule
-            questionTitre.classList.add("border-d", "rounded-pill", "d-flex", "justify-content-center", "text-primary", "mb-4")
-            sectionQuestionsIntitule.appendChild(questionTitre)
-
-            questions[i].reponses.forEach(
-                reponse => {
-                    okReponse = questions[i].bonnereponse
+                questions[i].reponses.forEach((reponse) => {
+                    okReponse = questions[i].bonnereponse;
                     const p_reponse = document.createElement('button');
-                    p_reponse.textContent = reponse
-                    p_reponse.classList.add("shadowfort", "btn", "btn-primary", "m-3", "rounded-pill", "bg-gradient", "border", "border-primary", "text-white", "opacity-75", "col-10", 'col-lg-4', 'col-xl-2')
-                    sectionReponses.appendChild(p_reponse)
-                    p_reponse.addEventListener("click", function () {
+                    p_reponse.textContent = reponse;
+                    p_reponse.classList.add(
+                        'shadowfort',
+                        'btn',
+                        'btn-primary',
+                        'm-3',
+                        'rounded-pill',
+                        'bg-gradient',
+                        'border',
+                        'border-primary',
+                        'text-white',
+                        'opacity-75',
+                        'col-10',
+                        'col-lg-4',
+                        'col-xl-2'
+                    );
+                    sectionReponses.appendChild(p_reponse);
+                    p_reponse.addEventListener('click', function () {
                         reponseDonne = this.textContent;
 
                         if (reponseDonne === questions[i].bonnereponse) {
-                            bonneReponses = bonneReponses + 1
+                            bonneReponses ++;
                         }
-                    })
-                }
-            )
-        }
 
+                        i++;
+                        sectionQuestionsIntitule.innerHTML = '';
+                        sectionReponses.innerHTML = '';
 
+                        if (i < NbDeQuestion) {
+                            displayNextQuestion();
+                        } else {
+                            // afficher le score final ici
+
+                            const result = document.createElement('h1');
+                            result.textContent = `Vous avez ${bonneReponses} bonne(s) réponse(s) sur ${NbDeQuestion} questions`
+                            result.classList.add("border-d", "rounded-pill", "d-flex", "justify-content-center", "text-primary", "mb-4")
+                            sectionQuestionsIntitule.appendChild(result)
+                        }
+                    });
+                });
+            };
+
+            displayNextQuestion();
+        };
     }
 })
 
