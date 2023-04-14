@@ -133,6 +133,13 @@ BtnCommencer.addEventListener("click", function () {
                             result.textContent = `Vous avez ${bonneReponses} bonne(s) réponse(s) sur ${NbDeQuestion} questions`
                             result.classList.add("border-d", "rounded-pill", "d-flex", "justify-content-center", "text-primary", "mb-4")
                             sectionQuestionsIntitule.appendChild(result)
+                            const refreshButton = document.createElement('button');
+                            refreshButton.textContent = 'Rafraîchir la page';
+                            refreshButton.classList.add('btn', 'rounded-pill', 'mt-3', 'mx-auto', 'd-flex', 'justify-content-center','shadowfort','btn-primary','bg-gradient', 'text-white','grosBtn');
+                            refreshButton.addEventListener('click', () => {
+                                location.reload();
+                            });
+                            sectionQuestionsIntitule.appendChild(refreshButton);
                         }
                     });
                 });
