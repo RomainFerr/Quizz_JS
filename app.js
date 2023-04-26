@@ -22,8 +22,11 @@ const BtnCommencer = document.querySelector('#BtnCommencer')
 const sectionQuestions = document.querySelector('#Questions')
 const sectionQuestionsIntitule = document.querySelector('#QuestionsIntitule')
 const sectionReponses = document.querySelector('#Reponses')
+const sectionNext = document.querySelector('#next')
 let Theme
 let NbDeQuestion
+let reponsesArray = []
+let reponses
 
 const displayThemes = (themes) => {
 
@@ -50,7 +53,12 @@ BtnCommencer.addEventListener("click", function () {
     if (NbDeQuestion > 0) {
         sectionNb_Questions.classList.add('displayNone')
         sectionQuestions.classList.remove('displayNone')
-    } else {
+    } else if(NbDeQuestion < 0){
+        NbDeQuestion =NbDeQuestion*(-1)
+        sectionNb_Questions.classList.add('displayNone')
+        sectionQuestions.classList.remove('displayNone')
+    }
+    else {
         NbDeQuestion=null
         sectionNb_Questions.classList.add('displayNone')
         sectionChoisirTheme.classList.remove('displayNone')
@@ -102,7 +110,7 @@ BtnCommencer.addEventListener("click", function () {
                         'mb-4'
                     );
                     sectionQuestionsIntitule.appendChild(questionTitre);
-
+                    shuffle(questions[i].reponses)
                     questions[i].reponses.forEach((reponse) => {
                         okReponse = questions[i].bonnereponse;
                         const p_reponse = document.createElement('button');
@@ -123,35 +131,53 @@ BtnCommencer.addEventListener("click", function () {
                             'col-xl-2'
                         );
                         sectionReponses.appendChild(p_reponse);
+
+
                         p_reponse.addEventListener('click', function () {
+
+
+
                             reponseDonne = this.textContent;
+
+                             reponses = `A la question : ${questions[i].intitule} Vous avez dit : ${reponseDonne} La bonne réponse était : ${questions[i].bonnereponse} `
+                            reponsesArray.push(reponses)
 
                             if (reponseDonne === questions[i].bonnereponse) {
                                 bonneReponses++;
                             }
-
                             i++;
                             sectionQuestionsIntitule.innerHTML = '';
                             sectionReponses.innerHTML = '';
                             if (i < NbDeQuestion) {
                                 displayNextQuestion();
+
                             } else {
                                 displayResult(bonneReponses);
 
                             }
+
+
+
+
+
                         });
-                    });
+                    }
+                    );
 
                 }
+
             };
 
             displayNextQuestion();
+
         };
     }
 })
-const displayResult = ( bonneReponses) =>{
+const displayResult = (bonneReponses) =>{
     // afficher le score final ici
 
+
+sectionNext.classList.add('displayNone')
     const result = document.createElement('h1');
     result.textContent = `Vous avez ${bonneReponses} bonne(s) réponse(s) sur ${NbDeQuestion} questions`
     result.classList.add("border-d", "rounded-pill", "d-flex", "justify-content-center", "text-primary", "mb-4")
@@ -163,5 +189,15 @@ const displayResult = ( bonneReponses) =>{
         location.reload();
     });
     sectionQuestionsIntitule.appendChild(refreshButton);
+    console.log(reponsesArray)
 }
 
+
+
+
+
+
+
+function shuffle(array) {
+    array.sort(() => Math.random() - 0.5);
+}
