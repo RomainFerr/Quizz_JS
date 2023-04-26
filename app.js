@@ -51,6 +51,7 @@ BtnCommencer.addEventListener("click", function () {
         sectionNb_Questions.classList.add('displayNone')
         sectionQuestions.classList.remove('displayNone')
     } else {
+        NbDeQuestion=null
         sectionNb_Questions.classList.add('displayNone')
         sectionChoisirTheme.classList.remove('displayNone')
     }
