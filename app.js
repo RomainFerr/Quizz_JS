@@ -173,6 +173,7 @@ BtnCommencer.addEventListener("click", function () {
         };
     }
 })
+
 const displayResult = (bonneReponses) =>{
     // afficher le score final ici
 
@@ -188,8 +189,14 @@ sectionNext.classList.add('displayNone')
     refreshButton.addEventListener('click', () => {
         location.reload();
     });
+    
     sectionQuestionsIntitule.appendChild(refreshButton);
-    console.log(reponsesArray)
+    reponsesArray.forEach( repArray =>{
+
+    const divRep = document.createElement('h1')
+        divRep.textContent = repArray
+    } )
+
 }
 
 
