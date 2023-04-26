@@ -75,79 +75,92 @@ BtnCommencer.addEventListener("click", function () {
             .catch(error => console.log(error))
 
 
+
+
+
         const displayQuestions = (questions) => {
             let bonneReponses = 0;
             let i = 0;
             let okReponse;
+            let nbQuestionsMax = questions.length;
 
             const displayNextQuestion = () => {
-                const questionTitre = document.createElement('h1');
-                questionTitre.textContent = questions[i].intitule;
-                questionTitre.classList.add(
-                    'border-d',
-                    'rounded-pill',
-                    'd-flex',
-                    'justify-content-center',
-                    'text-primary',
-                    'mb-4'
-                );
-                sectionQuestionsIntitule.appendChild(questionTitre);
+                if (i === nbQuestionsMax) {
+                    NbDeQuestion=questions.length;
+                    displayResult(bonneReponses);
+                } else {
 
-                questions[i].reponses.forEach((reponse) => {
-                    okReponse = questions[i].bonnereponse;
-                    const p_reponse = document.createElement('button');
-                    p_reponse.textContent = reponse;
-                    p_reponse.classList.add(
-                        'shadowfort',
-                        'btn',
-                        'btn-primary',
-                        'm-3',
+                    const questionTitre = document.createElement('h1');
+                    questionTitre.textContent = questions[i].intitule;
+                    questionTitre.classList.add(
+                        'border-d',
                         'rounded-pill',
-                        'bg-gradient',
-                        'border',
-                        'border-primary',
-                        'text-white',
-                        'opacity-75',
-                        'col-10',
-                        'col-lg-4',
-                        'col-xl-2'
+                        'd-flex',
+                        'justify-content-center',
+                        'text-primary',
+                        'mb-4'
                     );
-                    sectionReponses.appendChild(p_reponse);
-                    p_reponse.addEventListener('click', function () {
-                        reponseDonne = this.textContent;
+                    sectionQuestionsIntitule.appendChild(questionTitre);
 
-                        if (reponseDonne === questions[i].bonnereponse) {
-                            bonneReponses ++;
-                        }
+                    questions[i].reponses.forEach((reponse) => {
+                        okReponse = questions[i].bonnereponse;
+                        const p_reponse = document.createElement('button');
+                        p_reponse.textContent = reponse;
+                        p_reponse.classList.add(
+                            'shadowfort',
+                            'btn',
+                            'btn-primary',
+                            'm-3',
+                            'rounded-pill',
+                            'bg-gradient',
+                            'border',
+                            'border-primary',
+                            'text-white',
+                            'opacity-75',
+                            'col-10',
+                            'col-lg-4',
+                            'col-xl-2'
+                        );
+                        sectionReponses.appendChild(p_reponse);
+                        p_reponse.addEventListener('click', function () {
+                            reponseDonne = this.textContent;
 
-                        i++;
-                        sectionQuestionsIntitule.innerHTML = '';
-                        sectionReponses.innerHTML = '';
+                            if (reponseDonne === questions[i].bonnereponse) {
+                                bonneReponses++;
+                            }
 
-                        if (i < NbDeQuestion) {
-                            displayNextQuestion();
-                        } else {
-                            // afficher le score final ici
+                            i++;
+                            sectionQuestionsIntitule.innerHTML = '';
+                            sectionReponses.innerHTML = '';
+                            if (i < NbDeQuestion) {
+                                displayNextQuestion();
+                            } else {
+                                displayResult(bonneReponses);
 
-                            const result = document.createElement('h1');
-                            result.textContent = `Vous avez ${bonneReponses} bonne(s) réponse(s) sur ${NbDeQuestion} questions`
-                            result.classList.add("border-d", "rounded-pill", "d-flex", "justify-content-center", "text-primary", "mb-4")
-                            sectionQuestionsIntitule.appendChild(result)
-                            const refreshButton = document.createElement('button');
-                            refreshButton.textContent = 'Rafraîchir la page';
-                            refreshButton.classList.add('btn', 'rounded-pill', 'mt-3', 'mx-auto', 'd-flex', 'justify-content-center','shadowfort','btn-primary','bg-gradient', 'text-white','grosBtn');
-                            refreshButton.addEventListener('click', () => {
-                                location.reload();
-                            });
-                            sectionQuestionsIntitule.appendChild(refreshButton);
-                        }
+                            }
+                        });
                     });
-                });
+
+                }
             };
 
             displayNextQuestion();
         };
     }
 })
+const displayResult = ( bonneReponses) =>{
+    // afficher le score final ici
 
+    const result = document.createElement('h1');
+    result.textContent = `Vous avez ${bonneReponses} bonne(s) réponse(s) sur ${NbDeQuestion} questions`
+    result.classList.add("border-d", "rounded-pill", "d-flex", "justify-content-center", "text-primary", "mb-4")
+    sectionQuestionsIntitule.appendChild(result)
+    const refreshButton = document.createElement('button');
+    refreshButton.textContent = 'Recommencer ?';
+    refreshButton.classList.add('btn', 'rounded-pill', 'mt-3', 'mx-auto', 'd-flex', 'justify-content-center','shadowfort','btn-primary','bg-gradient', 'text-white','grosBtn');
+    refreshButton.addEventListener('click', () => {
+        location.reload();
+    });
+    sectionQuestionsIntitule.appendChild(refreshButton);
+}
 
