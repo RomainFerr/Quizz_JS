@@ -189,7 +189,7 @@ sectionNext.classList.add('displayNone')
     refreshButton.addEventListener('click', () => {
         location.reload();
     });
-    
+
     sectionQuestionsIntitule.appendChild(refreshButton);
     reponsesArray.forEach( repArray =>{
 
