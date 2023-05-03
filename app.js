@@ -22,7 +22,9 @@ const BtnCommencer = document.querySelector('#BtnCommencer')
 const sectionQuestions = document.querySelector('#Questions')
 const sectionQuestionsIntitule = document.querySelector('#QuestionsIntitule')
 const sectionReponses = document.querySelector('#Reponses')
-const sectionNext = document.querySelector('#next')
+//const sectionNext = document.querySelector('#next')
+const sectionResultat = document.querySelector('#tableau')
+
 let Theme
 let NbDeQuestion
 let reponsesArray = []
@@ -139,7 +141,7 @@ BtnCommencer.addEventListener("click", function () {
 
                             reponseDonne = this.textContent;
 
-                             reponses = `A la question : ${questions[i].intitule} Vous avez dit : ${reponseDonne} La bonne réponse était : ${questions[i].bonnereponse} `
+                             reponses = `A la question : ${questions[i].intitule} Vous avez dit : ${reponseDonne}, La bonne réponse était : ${questions[i].bonnereponse} `
                             reponsesArray.push(reponses)
 
                             if (reponseDonne === questions[i].bonnereponse) {
@@ -175,10 +177,11 @@ BtnCommencer.addEventListener("click", function () {
 })
 
 const displayResult = (bonneReponses) =>{
+
     // afficher le score final ici
 
-
-sectionNext.classList.add('displayNone')
+    //sectionNext.classList.add('displayNone')
+    sectionResultat.classList.remove('displayNone')
     const result = document.createElement('h1');
     result.textContent = `Vous avez ${bonneReponses} bonne(s) réponse(s) sur ${NbDeQuestion} questions`
     result.classList.add("border-d", "rounded-pill", "d-flex", "justify-content-center", "text-primary", "mb-4")
@@ -193,8 +196,11 @@ sectionNext.classList.add('displayNone')
     sectionQuestionsIntitule.appendChild(refreshButton);
     reponsesArray.forEach( repArray =>{
 
-    const divRep = document.createElement('h1')
+    const divRep = document.createElement('div')
+        divRep.classList.add('col-9','d-flex', 'mt-3','alert','alert-primary')
         divRep.textContent = repArray
+        sectionResultat.appendChild(divRep);
+
     } )
 
 }
